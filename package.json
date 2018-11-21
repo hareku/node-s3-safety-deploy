@@ -1,0 +1,25 @@
+{
+  "name": "s3-safety-deploy",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/hareku/node-s3-safety-deploy",
+  "author": "hareku <hareku908@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "s3-safety-deploy": "index.js"
+  },
+  "scripts": {
+    "test": "jest test/*"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.353.0",
+    "consola": "^2.2.4",
+    "minimatch": "^3.0.4",
+    "minimist": "^1.2.0",
+    "trailing-slash-it": "^0.3.0",
+    "walk-sync": "^0.3.3"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
