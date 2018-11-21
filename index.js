@@ -2,8 +2,7 @@ const AWS = require('aws-sdk')
 const logger = require('consola').withScope('S3-safety-deploy')
 const parseArgs = require('minimist')
 const walkSync = require('walk-sync')
-const fs = require('fs')
-const { promisify } = require('util')
+const mime = require('mime-types')
 const { getDeleteObjects, getTagObjects } = require('./lib.js')
 const trailingSlashIt = require('trailing-slash-it')
 
@@ -43,7 +42,6 @@ module.exports = async () => {
     logger.info(`Uploading new ${uploadFiles.length} files`)
 
     for (uploadFile of uploadFiles) {
-      const file = await promisify(fs.readFile)(`${trailingSlashIt(uploadDir)}${uploadFile}`)
       const s3key = bucketDir
         ? `${trailingSlashIt(bucketDir)}${uploadFile}`
         : uploadFile
@@ -54,7 +52,8 @@ module.exports = async () => {
       await S3.putObject({
         Bucket: bucket,
         Key: s3key,
-        Body: file
+        Body: `${trailingSlashIt(uploadDir)}${uploadFile}`,
+        ContentType: mime.lookup(uploadFile) || 'application/octet-stream'
       }).promise()
     }
 

@@ -14,6 +14,7 @@
   "dependencies": {
     "aws-sdk": "^2.353.0",
     "consola": "^2.2.4",
+    "mime-types": "^2.1.21",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "trailing-slash-it": "^0.3.0",
