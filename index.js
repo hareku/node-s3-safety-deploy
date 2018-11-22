@@ -50,7 +50,7 @@ module.exports = async () => {
         : uploadFile
 
       uploadS3Keys.push(s3key)
-      logger.info(s3key)
+      logger.info(`Upload: ${s3key}`)
 
       await S3.putObject({
         Bucket: bucket,
@@ -77,7 +77,7 @@ module.exports = async () => {
         Bucket: bucket,
         Delete: {
           Objects: deleteObjects.map(object => {
-            logger.info(object.Key)
+            logger.info(`Delete: ${object.Key}`)
             return { Key: object.Key }
           })
         }
@@ -97,7 +97,7 @@ module.exports = async () => {
       logger.info(`Tagging ${tagObjects.length} old files`)
 
       for (tagObject of tagObjects) {
-        logger.info(tagObject.Key)
+        logger.info(`Tag: ${tagObject.Key}`)
 
         await S3.putObjectTagging({
           Bucket: bucket,
