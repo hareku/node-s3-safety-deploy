@@ -54,6 +54,19 @@ test('getDeleteObjects with * delete pattern', () => {
   ])
 })
 
+test('getDeleteObjects with null delete pattern', () => {
+  const oldObjects = [
+    { Key: 'file1.html' },
+    { Key: 'file2.html' },
+  ]
+
+  const newObjectKeys = [
+    'file2.html',
+  ]
+
+  expect(lib.getDeleteObjects(oldObjects, newObjectKeys, null)).toEqual([])
+})
+
 test('getTagObjects', () => {
   const oldObjects = [
     { Key: 'file1.txt' },

@@ -1,14 +1,13 @@
 const minimatch = require('minimatch')
 
 const getDeleteObjects = (oldObjects, newObjectsKeys, deletePattern) => {
+  if (!deletePattern) {
+    return []
+  }
+
   return oldObjects.filter(oldObject => {
     const isNewObject = newObjectsKeys.some(newObjectKey => newObjectKey === oldObject.Key)
-
-    if (deletePattern) {
-      return !isNewObject && minimatch(oldObject.Key, deletePattern, { matchBase: true })
-    }
-
-    return !isNewObject
+    return !isNewObject && minimatch(oldObject.Key, deletePattern, { matchBase: true })
   })
 }
 
