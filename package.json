@@ -6,7 +6,7 @@
   "author": "hareku <hareku908@gmail.com>",
   "license": "MIT",
   "bin": {
-    "s3-safety-deploy": "cli.js"
+    "s3-safety-deploy": "./bin/s3-safety-deploy.js"
   },
   "scripts": {
     "test": "jest test/*"
